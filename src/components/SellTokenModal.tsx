@@ -46,7 +46,7 @@ export default function SellTokenModal({tokenId, isOpen, onClose}: Props) {
                 borderRadius="3xl"
             >
                 <ModalHeader color="white" px={4} fontSize="lg" fontWeight="medium">
-                    Sell Token
+                    List Token for sale
                 </ModalHeader>
                 <ModalCloseButton
                     color="white"

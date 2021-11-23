@@ -26,7 +26,7 @@ export default function SellButton({onClick, isFullWidth = false}: Props) {
             }}
             isFullWidth
         >
-            Sell for ETH
+            List for sale
         </Button>
     );
 }
