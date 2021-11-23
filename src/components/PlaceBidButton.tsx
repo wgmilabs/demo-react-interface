@@ -2,10 +2,9 @@ import {Button} from "@chakra-ui/react";
 
 type Props = {
     onClick: any;
-    isFullWidth?: boolean | undefined;
 };
 
-export default function PlaceBidButton({onClick, isFullWidth}: Props) {
+export default function PlaceBidButton({onClick, }: Props) {
 
     return (
         <Button

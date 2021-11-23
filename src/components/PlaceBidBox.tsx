@@ -27,7 +27,7 @@ export default function PlaceBidBox({tokenId, onClick}: Props) {
     return (
         <Box>
             {bid && bid.hasBid && bid.minValue && <Text>Highest Bid: {parseFloat(formatEther(bid.minValue)).toFixed(3)} ETH</Text>}
-            <PlaceBidButton onClick={onClick} isFullWidth/>
+            <PlaceBidButton onClick={onClick} />
         </Box>
     );
 }

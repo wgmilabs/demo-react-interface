@@ -61,7 +61,7 @@ export default function AuctionItem({tokenId}: Props) {
     }
 
     return account ? (
-        <Box m="10" borderWidth="1px" borderRadius="lg" overflow="hidden" backgroundColor="white">
+        <Box mt="10" borderWidth="1px" borderRadius="lg" overflow="hidden" backgroundColor="white">
             <Flex flexDirection="row">
                 <Image src={data.image} alt={data.name} maxW="sm"/>
 

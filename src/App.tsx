@@ -6,9 +6,26 @@ import Body from "./components/Body";
 import Layout from "./components/Layout";
 import MintButton from "./components/MintButton";
 import AuctionItem from "./components/AuctionItem";
+import {useContractCall} from "@usedapp/core";
+import {contract} from "./eth";
 
 export default function App() {
     const {isOpen, onOpen, onClose} = useDisclosure();
+
+    const tokenSupply = useTokenSupply();
+
+    function useTokenSupply() {
+        const [totalSupply] =
+        useContractCall({
+                abi: contract.interface,
+                address: contract.address,
+                method: 'totalSupply',
+                args: []
+            }
+        ) ?? [];
+        return totalSupply;
+    }
+
     return (
         <Body>
             <header style={{
@@ -28,7 +45,9 @@ export default function App() {
                 <MintButton />
             </Layout>
             <Layout>
-                <AuctionItem tokenId={1} />
+                { tokenSupply && Array.from({length: tokenSupply.toNumber()}, (_, i) => i + 1).map(i => {
+                    return <AuctionItem tokenId={i} />
+                })}
             </Layout>
         </Body>
     );

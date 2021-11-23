@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import {useContractFunction} from "@usedapp/core";
 import {ChangeEvent, useState} from "react";
-import SellButton from "./SellButton";
 import {contract} from "../eth";
 import {utils} from "ethers";
 import PlaceBidButton from "./PlaceBidButton";
