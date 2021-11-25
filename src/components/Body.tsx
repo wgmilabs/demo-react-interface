@@ -8,7 +8,7 @@ type Props = {
 export default function Body({children}: Props) {
     return (
         <ChakraProvider>
-            <Box h="100vh" bg="gray.800">
+            <Box h="100%" bg="gray.800" minH="100vh">
                 {children}
             </Box>
         </ChakraProvider>
