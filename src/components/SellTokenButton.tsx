@@ -4,9 +4,9 @@ type Props = {
     onClick: any;
 };
 
-export default function PlaceBidButton({onClick}: Props) {
+export default function SellTokenButton({onClick}: Props) {
 
-    return (
+    return(
         <Button
             onClick={onClick}
             bg="orange.300"
@@ -25,7 +25,7 @@ export default function PlaceBidButton({onClick}: Props) {
             }}
             isFullWidth
         >
-            Place Bid
+            List for sale
         </Button>
     );
 }

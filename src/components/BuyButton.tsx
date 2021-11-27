@@ -16,7 +16,7 @@ export default function BuyButton({tokenId}: Props) {
     }
 
     function useBuyOffers() {
-        const [isForSale, tid, owner, minValue] =
+        const [isForSale, trxId, owner, minValue] =
         useContractCall({
                 abi: contract.interface,
                 address: contract.address,
@@ -24,7 +24,7 @@ export default function BuyButton({tokenId}: Props) {
                 args: [tokenId]
             }
         ) ?? [];
-        return { isForSale, minValue };
+        return { trxId, isForSale, owner, minValue };
     }
 
     return offer && offer.isForSale && offer.minValue ? (

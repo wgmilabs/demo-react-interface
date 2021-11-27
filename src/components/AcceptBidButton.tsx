@@ -16,7 +16,7 @@ export default function AcceptBidButton({tokenId}: Props) {
     }
 
     function useBidds() {
-        const [hasBid, tid, bidder, minValue] =
+        const [hasBid, trxId, bidder, minValue] =
         useContractCall({
                 abi: contract.interface,
                 address: contract.address,
@@ -24,7 +24,7 @@ export default function AcceptBidButton({tokenId}: Props) {
                 args: [tokenId]
             }
         ) ?? [];
-        return { hasBid, minValue };
+        return { trxId, hasBid, bidder, minValue };
     }
 
     return bid && bid.hasBid && bid.minValue ? (

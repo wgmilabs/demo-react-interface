@@ -38,19 +38,13 @@ export default function MintButton() {
     return tokenSupply === maxTokenSupply ? null : (
         <Button
             onClick={mintToken}
-            bg="blue.800"
-            color="blue.300"
+            bgGradient="linear(to-r, teal.300, blue.400)"
+            color="gray.800"
             fontSize="lg"
             fontWeight="medium"
             borderRadius="xl"
-            border="1px solid transparent"
             _hover={{
-                borderColor: "blue.700",
-                color: "blue.400",
-            }}
-            _active={{
-                backgroundColor: "blue.800",
-                borderColor: "blue.700",
+                color: "gray.700",
             }}
         >
             Mint New NFT ({maxTokenSupply.toNumber() - tokenSupply.toNumber()} left)

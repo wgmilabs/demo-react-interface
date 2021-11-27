@@ -3,12 +3,12 @@ import {Box, Flex, Image, Link, useDisclosure} from "@chakra-ui/react";
 import {contract, getExplorerUrl} from "../eth";
 import {useContractCall, useEthers} from '@usedapp/core';
 import BuyButton from "./BuyButton";
-import SellButton from "./SellButton";
 import {ExternalLinkIcon} from "@chakra-ui/icons";
 import SellTokenModal from "./SellTokenModal";
 import PlaceBidBox from "./PlaceBidBox";
 import AcceptBidButton from "./AcceptBidButton";
 import PlaceBidModal from "./PlaceBidModal";
+import SellTokenBox from "./SellTokenBox";
 
 type Props = {
     tokenId: number;
@@ -61,7 +61,7 @@ export default function AuctionItem({tokenId}: Props) {
     }
 
     return account ? (
-        <Box mt="10" borderWidth="1px" borderRadius="lg" overflow="hidden" backgroundColor="white">
+        <Box mt="5" mb="5" borderWidth="1px" borderRadius="lg" overflow="hidden" backgroundColor="white">
             <Flex flexDirection="row">
                 <Image src={data.image} alt={data.name} maxW="sm"/>
 
@@ -86,10 +86,10 @@ export default function AuctionItem({tokenId}: Props) {
                             )}`} <ExternalLinkIcon mr={1}/></Link>
                         </Box>}
                     </Box>
-                    <Box>
-                        <Box py="5">{isOwner() ? <AcceptBidButton tokenId={tokenId}/> :
+                    <Box mt="5">
+                        <Box >{isOwner() ? <AcceptBidButton tokenId={tokenId}/> :
                             <PlaceBidBox tokenId={tokenId} onClick={bidModal.onOpen}/>}</Box>
-                        {isOwner() ? <SellButton onClick={sellModal.onOpen} isFullWidth/> :
+                        {isOwner() ? <SellTokenBox tokenId={tokenId} onClick={sellModal.onOpen}/> :
                             <BuyButton tokenId={tokenId}/>}
                     </Box>
                 </Flex>

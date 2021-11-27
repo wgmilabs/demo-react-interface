@@ -1,32 +1,32 @@
 import {Button} from "@chakra-ui/react";
+import {CloseIcon} from "@chakra-ui/icons";
 
 type Props = {
     onClick: any;
-    isFullWidth?: boolean | undefined;
 };
 
-export default function SellButton({onClick, isFullWidth = false}: Props) {
-
-    return(
+export default function WithdrawButton({onClick}: Props) {
+    return (
         <Button
             onClick={onClick}
-            bg="orange.300"
-            color="orange.800"
+            bg="gray.700"
+            color="gray.200"
             fontSize="lg"
             fontWeight="medium"
             borderRadius="xl"
             border="1px solid transparent"
+            ml="2"
             _hover={{
-                borderColor: "orange.300",
-                color: "orange.700",
+                borderColor: "gray.600",
+                color: "gray.300",
             }}
             _active={{
-                backgroundColor: "orange.700",
-                borderColor: "orange.800",
+                backgroundColor: "gray.700",
+                borderColor: "gray.600",
             }}
             isFullWidth
         >
-            List for sale
+            <CloseIcon/>
         </Button>
     );
 }
