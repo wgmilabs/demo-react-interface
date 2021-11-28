@@ -2,8 +2,8 @@ import {Box, Flex, Text} from "@chakra-ui/react";
 import {useContractCall, useContractFunction} from "@usedapp/core";
 import {contract} from "../eth";
 import {formatEther} from "@ethersproject/units";
-import SellTokenButton from "./SellTokenButton";
 import WithdrawButton from "./WithdrawButton";
+import SecondaryButton from "./SecondaryButton";
 
 type Props = {
     tokenId: number;
@@ -36,7 +36,7 @@ export default function SellTokenBox({tokenId, onClick}: Props) {
             <Text mt="2">Offered for {parseFloat(formatEther(offer.minValue)).toFixed(3)} ETH</Text>}
             <Flex mt="2">
                 <Box flexGrow="4">
-                    <SellTokenButton onClick={onClick}/>
+                    <SecondaryButton onClick={onClick} label="List for sale"/>
                 </Box>
                 {offer && offer.isForSale && <Box flexGrow="1">
                     <WithdrawButton onClick={tokenNoLongerForSale}/>

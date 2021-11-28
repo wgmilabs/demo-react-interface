@@ -15,7 +15,7 @@ import {useContractFunction} from "@usedapp/core";
 import {ChangeEvent, useState} from "react";
 import {contract} from "../eth";
 import {utils} from "ethers";
-import PlaceBidButton from "./PlaceBidButton";
+import SecondaryButton from "./SecondaryButton";
 
 type Props = {
     tokenId: number;
@@ -69,7 +69,7 @@ export default function PlaceBidModal({tokenId, isOpen, onClose}: Props) {
                     borderBottomRightRadius="3xl"
                     p={6}
                 >
-                    <PlaceBidButton onClick={enterTokenBid}/>
+                    <SecondaryButton onClick={enterTokenBid} label="Place Bid"/>
                 </ModalFooter>
             </ModalContent>
         </Modal>

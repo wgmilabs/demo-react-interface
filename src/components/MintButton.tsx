@@ -3,12 +3,12 @@ import {useContractCall, useContractFunction} from "@usedapp/core";
 import {contract} from "../eth";
 
 export default function MintButton() {
-    const { send } = useContractFunction(contract, 'mint');
+    const {send} = useContractFunction(contract, 'mint');
     const tokenSupply = useTokenSupply();
     const maxTokenSupply = useMaxTokenSupply();
 
     function mintToken() {
-        send()
+        send();
     }
 
     function useTokenSupply() {

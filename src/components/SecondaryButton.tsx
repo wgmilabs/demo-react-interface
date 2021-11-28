@@ -2,11 +2,11 @@ import {Button} from "@chakra-ui/react";
 
 type Props = {
     onClick: any;
+    label: string;
 };
 
-export default function SellTokenButton({onClick}: Props) {
-
-    return(
+export default function SecondaryButton({onClick, label}: Props) {
+    return (
         <Button
             onClick={onClick}
             bg="orange.300"
@@ -17,15 +17,15 @@ export default function SellTokenButton({onClick}: Props) {
             border="1px solid transparent"
             _hover={{
                 borderColor: "orange.300",
-                color: "orange.700",
+                color: "orange.700"
             }}
             _active={{
                 backgroundColor: "orange.700",
-                borderColor: "orange.800",
+                borderColor: "orange.800"
             }}
             isFullWidth
         >
-            List for sale
+            {label}
         </Button>
     );
 }

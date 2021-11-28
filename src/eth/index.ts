@@ -1,5 +1,5 @@
-import { utils } from 'ethers'
-import { Contract } from '@ethersproject/contracts'
+import {utils} from 'ethers'
+import {Contract} from '@ethersproject/contracts'
 import ERC721MarketPlace from './abi/ERC721MarketPlace.json';
 import {ChainId} from "@usedapp/core";
 
@@ -13,6 +13,16 @@ export const getExplorerUrl = (chainId: ChainId) => {
           return 'https://etherscan.io/address/';
       case ChainId.Ropsten:
           return 'https://ropsten.etherscan.io/address/';
+      case ChainId.Kovan:
+          return 'https://kovan.etherscan.io/address/';
+      case ChainId.Rinkeby:
+          return 'https://rinkeby.etherscan.io/address/';
+      case ChainId.Goerli:
+          return 'https://goerli.etherscan.io/address/';
+      case ChainId.BSC:
+          return 'https://bscscan.com/address/';
+      case ChainId.BSCTestnet:
+          return 'https://testnet.bscscan.com/address/';
   }
 }
 

@@ -12,7 +12,7 @@ export default function BuyButton({tokenId}: Props) {
     const offer = useBuyOffers();
 
     function buyToken() {
-        send(tokenId, {value: offer.minValue})
+        send(tokenId, {value: offer.minValue});
     }
 
     function useBuyOffers() {

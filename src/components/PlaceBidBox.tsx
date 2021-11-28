@@ -1,9 +1,9 @@
 import {Box, Flex, Text} from "@chakra-ui/react";
-import PlaceBidButton from "./PlaceBidButton";
 import {useContractCall, useContractFunction, useEthers} from "@usedapp/core";
 import {contract} from "../eth";
 import {formatEther} from "@ethersproject/units";
 import WithdrawButton from "./WithdrawButton";
+import SecondaryButton from "./SecondaryButton";
 
 type Props = {
     tokenId: number;
@@ -14,7 +14,7 @@ export default function PlaceBidBox({tokenId, onClick}: Props) {
     const bid = useBidds();
     const {account} = useEthers();
 
-    const { send } = useContractFunction(contract, 'withdrawTokenBid');
+    const {send} = useContractFunction(contract, 'withdrawTokenBid');
 
     function withdrawTokenBid() {
         send(tokenId);
@@ -39,7 +39,7 @@ export default function PlaceBidBox({tokenId, onClick}: Props) {
 
             <Flex mt="2">
                 <Box flexGrow="4">
-                    <PlaceBidButton onClick={onClick}/>
+                    <SecondaryButton onClick={onClick} label="Place Bid"/>
                 </Box>
                 {bid && bid.hasBid && bid.minValue && bid.bidder === account && <Box flexGrow="1">
                     <WithdrawButton onClick={withdrawTokenBid}/>

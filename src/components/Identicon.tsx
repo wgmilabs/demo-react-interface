@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useEthers } from "@usedapp/core";
+import {useEffect, useRef} from "react";
+import {useEthers} from "@usedapp/core";
 // @ts-ignore
 import Jazzicon from "@metamask/jazzicon";
 import styled from "@emotion/styled";
@@ -13,7 +13,7 @@ const StyledIdenticon = styled.div`
 
 export default function Identicon() {
     const ref = useRef<HTMLDivElement>();
-    const { account } = useEthers();
+    const {account} = useEthers();
 
     useEffect(() => {
         if (account && ref.current) {
@@ -22,5 +22,5 @@ export default function Identicon() {
         }
     }, [account]);
 
-    return <StyledIdenticon ref={ref as any} />;
+    return <StyledIdenticon ref={ref as any}/>;
 }

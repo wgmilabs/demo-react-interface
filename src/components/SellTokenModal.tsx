@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import {useContractFunction} from "@usedapp/core";
 import {ChangeEvent, useState} from "react";
-import SellTokenButton from "./SellTokenButton";
 import {contract} from "../eth";
 import {utils} from "ethers";
+import SecondaryButton from "./SecondaryButton";
 
 type Props = {
     tokenId: number;
@@ -69,7 +69,7 @@ export default function SellTokenModal({tokenId, isOpen, onClose}: Props) {
                     borderBottomRightRadius="3xl"
                     p={6}
                 >
-                    <SellTokenButton onClick={sellToken}/>
+                    <SecondaryButton onClick={sellToken} label="List for Sale"/>
                 </ModalFooter>
             </ModalContent>
         </Modal>
