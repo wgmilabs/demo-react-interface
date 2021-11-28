@@ -28,7 +28,6 @@ export default function AuctionItem({tokenId}: Props) {
             const getTokenMetadata = async () => {
                 const result = await fetch(`${tokenURI}.json`);
                 const resultData = await result.json();
-                console.log(resultData);
                 setData(resultData);
             };
 
