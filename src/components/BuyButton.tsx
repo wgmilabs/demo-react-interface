@@ -36,6 +36,7 @@ export default function BuyButton({tokenId}: Props) {
             fontWeight="medium"
             borderRadius="xl"
             border="1px solid transparent"
+            mt="2"
             _hover={{
                 borderColor: "blue.700",
                 color: "blue.400",
