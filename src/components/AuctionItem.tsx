@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Flex, Image, Link, useDisclosure} from "@chakra-ui/react";
-import {contract, getExplorerUrl} from "../eth";
+import {getExplorerUrl} from "../eth";
 import {useContractCall, useEthers} from '@usedapp/core';
 import BuyButton from "./BuyButton";
 import {ExternalLinkIcon} from "@chakra-ui/icons";
@@ -9,12 +9,14 @@ import PlaceBidBox from "./PlaceBidBox";
 import AcceptBidButton from "./AcceptBidButton";
 import PlaceBidModal from "./PlaceBidModal";
 import SellTokenBox from "./SellTokenBox";
+import {Contract} from "@ethersproject/contracts";
 
 type Props = {
+    contract: Contract;
     tokenId: number;
 };
 
-export default function AuctionItem({tokenId}: Props) {
+export default function AuctionItem({contract, tokenId}: Props) {
     const sellModal = useDisclosure();
     const bidModal = useDisclosure();
     const {account, chainId} = useEthers();
@@ -71,8 +73,7 @@ export default function AuctionItem({tokenId}: Props) {
                             fontWeight="semibold"
                             as="h4"
                             lineHeight="tight"
-                            isTruncated
-                        >
+                            isTruncated>
                             {data.name}
                         </Box>
                         {data.description}<br/><br/>
@@ -86,15 +87,16 @@ export default function AuctionItem({tokenId}: Props) {
                         </Box>}
                     </Box>
                     <Box mt="5">
-                        <Box >{isOwner() ? <AcceptBidButton tokenId={tokenId}/> :
-                            <PlaceBidBox tokenId={tokenId} onClick={bidModal.onOpen}/>}</Box>
-                        {isOwner() ? <SellTokenBox tokenId={tokenId} onClick={sellModal.onOpen}/> :
-                            <BuyButton tokenId={tokenId}/>}
+                        <Box>{isOwner() ? <AcceptBidButton contract={contract} tokenId={tokenId}/> :
+                            <PlaceBidBox contract={contract} tokenId={tokenId} onClick={bidModal.onOpen}/>}</Box>
+                        {isOwner() ? <SellTokenBox contract={contract} tokenId={tokenId} onClick={sellModal.onOpen}/> :
+                            <BuyButton contract={contract} tokenId={tokenId}/>}
                     </Box>
                 </Flex>
             </Flex>
-            <PlaceBidModal tokenId={tokenId} isOpen={bidModal.isOpen} onClose={bidModal.onClose}/>
-            <SellTokenModal tokenId={tokenId} isOpen={sellModal.isOpen} onClose={sellModal.onClose}/>
+            <PlaceBidModal contract={contract} tokenId={tokenId} isOpen={bidModal.isOpen} onClose={bidModal.onClose}/>
+            <SellTokenModal contract={contract} tokenId={tokenId} isOpen={sellModal.isOpen}
+                            onClose={sellModal.onClose}/>
         </Box>
     ) : null;
 }

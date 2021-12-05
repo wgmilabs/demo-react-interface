@@ -1,8 +1,12 @@
 import {Button} from "@chakra-ui/react";
 import {useContractCall, useContractFunction} from "@usedapp/core";
-import {contract} from "../eth";
+import {Contract} from "@ethersproject/contracts";
 
-export default function MintButton() {
+type Props = {
+    contract: Contract;
+};
+
+export default function MintButton({contract}: Props) {
     const {send} = useContractFunction(contract, 'mint');
     const tokenSupply = useTokenSupply();
     const maxTokenSupply = useMaxTokenSupply();

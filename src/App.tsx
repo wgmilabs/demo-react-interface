@@ -1,30 +1,15 @@
 import React from 'react';
-import {Box, Text, useDisclosure} from "@chakra-ui/react";
+import {Box, Text, useControllableState, useDisclosure} from "@chakra-ui/react";
 import ConnectButton from "./components/ConnectButton";
 import AccountModal from "./components/AccountModal";
 import Body from "./components/Body";
-import Layout from "./components/Layout";
-import MintButton from "./components/MintButton";
-import AuctionItem from "./components/AuctionItem";
-import {useContractCall} from "@usedapp/core";
-import {contract} from "./eth";
+import {getContract} from "./eth";
+import TokenPage from "./components/TokenPage";
+import TokenVersionButton from "./components/buttons/TokenVersionButton";
 
 export default function App() {
+    const [value, setValue] = useControllableState<number>({ defaultValue: 0 })
     const {isOpen, onOpen, onClose} = useDisclosure();
-
-    const tokenSupply = useTokenSupply();
-
-    function useTokenSupply() {
-        const [totalSupply] =
-        useContractCall({
-                abi: contract.interface,
-                address: contract.address,
-                method: 'totalSupply',
-                args: []
-            }
-        ) ?? [];
-        return totalSupply;
-    }
 
     return (
         <Body>
@@ -36,19 +21,15 @@ export default function App() {
                 <Box px="3">
                     <Text color="white" fontSize="md">
                         WGMI
+                        <TokenVersionButton label="NFTs V1" onClick={() => setValue(0)} disabled={value === 0}/>
+                        <TokenVersionButton label="NFTs V2" onClick={() => setValue(1)} disabled={value === 1}/>
                     </Text>
                 </Box>
                 <ConnectButton handleOpenModal={onOpen}/>
                 <AccountModal isOpen={isOpen} onClose={onClose}/>
             </header>
-            <Layout>
-                <MintButton />
-            </Layout>
-            <Layout>
-                { tokenSupply && Array.from({length: tokenSupply.toNumber()}, (_, i) => i + 1).map(i => {
-                    return <AuctionItem tokenId={i} />
-                })}
-            </Layout>
+            {value === 0 && <TokenPage contract={getContract(value)} />}
+            {value === 1 && <TokenPage contract={getContract(value)} />}
         </Body>
     );
 }

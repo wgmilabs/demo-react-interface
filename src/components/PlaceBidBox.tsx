@@ -1,16 +1,17 @@
 import {Box, Flex, Text} from "@chakra-ui/react";
 import {useContractCall, useContractFunction, useEthers} from "@usedapp/core";
-import {contract} from "../eth";
 import {formatEther} from "@ethersproject/units";
 import WithdrawButton from "./WithdrawButton";
-import SecondaryButton from "./SecondaryButton";
+import SecondaryButton from "./buttons/SecondaryButton";
+import {Contract} from "@ethersproject/contracts";
 
 type Props = {
+    contract: Contract;
     tokenId: number;
     onClick: any;
 };
 
-export default function PlaceBidBox({tokenId, onClick}: Props) {
+export default function PlaceBidBox({contract, tokenId, onClick}: Props) {
     const bid = useBidds();
     const {account} = useEthers();
 

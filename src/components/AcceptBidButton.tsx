@@ -1,14 +1,15 @@
-import {Button} from "@chakra-ui/react";
 import {useContractCall, useContractFunction} from "@usedapp/core";
-import {contract} from "../eth";
 import {formatEther} from "@ethersproject/units";
+import {Contract} from "@ethersproject/contracts";
+import PrimaryButton from "./buttons/PrimaryButton";
 
 type Props = {
+    contract: Contract;
     tokenId: number;
 };
 
-export default function AcceptBidButton({tokenId}: Props) {
-    const { send } = useContractFunction(contract, 'acceptTokenBid');
+export default function AcceptBidButton({contract, tokenId}: Props) {
+    const {send} = useContractFunction(contract, 'acceptTokenBid');
     const bid = useBidds();
 
     function acceptTokenBid() {
@@ -24,29 +25,12 @@ export default function AcceptBidButton({tokenId}: Props) {
                 args: [tokenId]
             }
         ) ?? [];
-        return { trxId, hasBid, bidder, minValue };
+        return {trxId, hasBid, bidder, minValue};
     }
 
     return bid && bid.hasBid && bid.minValue ? (
-        <Button
+        <PrimaryButton
             onClick={acceptTokenBid}
-            bg="blue.800"
-            color="blue.300"
-            fontSize="lg"
-            fontWeight="medium"
-            borderRadius="xl"
-            border="1px solid transparent"
-            _hover={{
-                borderColor: "blue.700",
-                color: "blue.400",
-            }}
-            _active={{
-                backgroundColor: "blue.800",
-                borderColor: "blue.700",
-            }}
-            isFullWidth
-        >
-            Sell for {parseFloat(formatEther(bid.minValue)).toFixed(3)} ETH
-        </Button>
+            label={`Sell for ${parseFloat(formatEther(bid.minValue)).toFixed(3)} ETH`}/>
     ) : null;
 }

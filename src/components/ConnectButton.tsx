@@ -2,6 +2,7 @@ import {Box, Button, Text} from "@chakra-ui/react";
 import {CHAIN_NAMES, ChainId, useEtherBalance, useEthers} from "@usedapp/core";
 import {formatEther} from "@ethersproject/units";
 import Identicon from "./Identicon";
+import PrimaryButton from "./buttons/PrimaryButton";
 
 type Props = {
     handleOpenModal: any;
@@ -64,34 +65,14 @@ export default function ConnectButton({handleOpenModal}: Props) {
                 >
                     <Text color="white" fontSize="md" fontWeight="medium" mr="2">
                         {account &&
-                        `${account.slice(0, 6)}...${account.slice(
-                            account.length - 4,
-                            account.length
-                        )}`}
+                            `${account.slice(0, 6)}...${account.slice(
+                                account.length - 4,
+                                account.length
+                            )}`}
                     </Text>
                     <Identicon/>
                 </Button>
             </Box>
         </Box>
-    ) : (
-        <Button
-            onClick={handleConnectWallet}
-            bg="blue.800"
-            color="blue.300"
-            fontSize="lg"
-            fontWeight="medium"
-            borderRadius="xl"
-            border="1px solid transparent"
-            _hover={{
-                borderColor: "blue.700",
-                color: "blue.400",
-            }}
-            _active={{
-                backgroundColor: "blue.800",
-                borderColor: "blue.700",
-            }}
-        >
-            Connect to a wallet
-        </Button>
-    );
+    ) : <PrimaryButton onClick={handleConnectWallet} label="Connect to a wallet" isFullWidth={false}/>;
 }

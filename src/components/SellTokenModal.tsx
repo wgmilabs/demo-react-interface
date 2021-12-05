@@ -13,17 +13,18 @@ import {
 } from "@chakra-ui/react";
 import {useContractFunction} from "@usedapp/core";
 import {ChangeEvent, useState} from "react";
-import {contract} from "../eth";
 import {utils} from "ethers";
-import SecondaryButton from "./SecondaryButton";
+import SecondaryButton from "./buttons/SecondaryButton";
+import {Contract} from "@ethersproject/contracts";
 
 type Props = {
+    contract: Contract;
     tokenId: number;
     isOpen: any;
     onClose: any;
 };
 
-export default function SellTokenModal({tokenId, isOpen, onClose}: Props) {
+export default function SellTokenModal({contract, tokenId, isOpen, onClose}: Props) {
     const {send} = useContractFunction(contract, 'offerTokenForSale');
     const [value, setValue] = useState("");
 
