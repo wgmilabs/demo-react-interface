@@ -27,8 +27,9 @@ export default function AuctionItem({contract, tokenId}: Props) {
 
     useEffect(() => {
         if (tokenURI) {
+            const tokenURL = tokenURI.endsWith(".json") ? tokenURI : `${tokenURI}.json`
             const getTokenMetadata = async () => {
-                const result = await fetch(`${tokenURI}.json`);
+                const result = await fetch(tokenURL);
                 const resultData = await result.json();
                 setData(resultData);
             };
